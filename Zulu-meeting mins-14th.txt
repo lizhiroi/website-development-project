@@ -1,0 +1,42 @@
+Initial workflow
+Your wireframe and website design should be complete.
+Data Model and E/R diagram should be complete
+
+Oct 14th, 2023
+
+1. Starting wireframe and website design. Zhi and Xiaoli are responsible for this part. The division is as following:
+
+Zhi: 
+
+- Website functionality
+o Listing items
+o Search with filtering
+o Item interaction
+o Checkout – only for registered users
+
+- A contact us page
+o Information about your group/topic
+o How to contact the company and/or where they are located
+
+
+- Home page
+o The page where most users will enter your site
+
+Xiaoii:
+- Administrative Panel
+o Manage registered users
+o Manage all items and associate data
+
+- User registration and authentication
+o AlData Model and E/R diagramlow users to register and login
+o Registered user can modify their profile
+
+- Registered user section
+o Manage own profile 
+o View itemsinteractions and checkout
+
+
+2. Data Model and E/R diagram : Qingjun is responsible for this part. 
+
+Qingjun:
+-- Data Model and E/R diagram
