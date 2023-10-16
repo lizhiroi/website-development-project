@@ -1,0 +1,10 @@
+Initial workflow
+Your wireframe and website design should be complete.
+Data Model and E/R diagram should be complete
+
+Oct 13th, 2023
+1. version control: github  https://github.com/lizhiroi/website-development-project
+2. wireframe and website desgin tool: Figma  https://www.figma.com/files/project/111764965/AirlineReservation?fuid=1275453308046575724
+3. Data Model and E/R diagram: visio studio
+4. work process flow control: trello   https://trello.com/invite/fsd10zulu/ATTIeb221e270e3977cea7f3b3172341f8a8CD8D5E3B
+5. DB: mySQL
