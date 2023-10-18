@@ -1,0 +1,8 @@
+Initial workflow
+Your wireframe and website design should be complete.
+Data Model and E/R diagram should be complete
+
+Oct 18th, 2023
+1. Export wireframe pngs from Figma  -- Zhi and Xiaoli
+2. Update the Plain text  -- Qingjun
+3. Submit all documents to LEA  -- Xiaoli
