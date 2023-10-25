@@ -1,0 +1,46 @@
+Initial workflow
+Your wireframe and website design completed.
+Data Model and E/R diagram completed.
+
+Midway Evaluation
+Main HTML and CSS should be implemented.
+Database shoud be setup.
+Some modules shoud be functional.
+
+Oct 23th, 2023
+
+1. Starting coding the HTML and CSS. Zhi and Xiaoli are responsible for this part. The division is as following:
+
+Zhi: doing research on different airline service webpage and looking for images and components of the webpages.
+
+- Website functionality
+o Listing items
+o Search with filtering
+o Item interaction
+o Checkout – only for registered users
+
+- A contact us page
+o Information about your group/topic
+o How to contact the company and/or where they are located
+
+
+- Home page
+o The page where most users will enter your site
+
+Xiaoili: doing research on different airline service webpage and looking for images and components of the webpages.
+- Administrative Panel
+o Manage registered users
+o Manage all items and associate data
+
+- User registration and authentication
+o Registered user can modify their profile
+
+- Registered user section
+o Manage own profile 
+o View items interactions and checkout
+
+
+2.Qingjun: based on ER diagram, try to add more tables to complete the data model if neccessary. 
+
+Qingjun:
+-- build the database.

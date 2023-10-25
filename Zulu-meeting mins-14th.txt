@@ -22,7 +22,7 @@ o How to contact the company and/or where they are located
 - Home page
 o The page where most users will enter your site
 
-Xiaoii:
+Xiaoili:
 - Administrative Panel
 o Manage registered users
 o Manage all items and associate data

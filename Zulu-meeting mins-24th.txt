@@ -1,0 +1,46 @@
+Initial workflow
+Your wireframe and website design completed.
+Data Model and E/R diagram completed.
+
+Midway Evaluation
+Main HTML and CSS should be implemented.
+Database shoud be setup.
+Some modules shoud be functional.
+
+Oct 24th, 2023
+
+1. Starting coding the HTML and CSS. Zhi and Xiaoli are responsible for this part. The division is as following:
+
+Zhi: Finalize the design of the website, start to build the websit using HTML and CSS.
+
+- Website functionality
+o Listing items
+o Search with filtering
+o Item interaction
+o Checkout – only for registered users
+
+- A contact us page
+o Information about your group/topic
+o How to contact the company and/or where they are located
+
+
+- Home page
+o The page where most users will enter your site
+
+Xiaoili: Finalize the design of the website, start to build the websit using HTML and CSS.
+- Administrative Panel
+o Manage registered users
+o Manage all items and associate data
+
+- User registration and authentication
+o Registered user can modify their profile
+
+- Registered user section
+o Manage own profile 
+o View items interactions and checkout
+
+
+2.Qingjun: Finalize the data model and start to create the database.
+
+Qingjun:
+-- build the database.
