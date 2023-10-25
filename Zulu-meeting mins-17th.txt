@@ -1,0 +1,7 @@
+Initial workflow
+Your wireframe and website design should be complete.
+Data Model and E/R diagram should be complete
+
+Oct 17th, 2023
+1. Discuss about the Admin part.
+2. Continue to work on Wireframe and  data Model, ER diagram. 
