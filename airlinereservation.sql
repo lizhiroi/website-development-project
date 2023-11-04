@@ -4,17 +4,19 @@ CREATE DATABASE IF NOT EXISTS airreservation DEFAULT CHARACTER SET utf8 COLLATE 
 USE `airreservation`;
 SET FOREIGN_KEY_CHECKS = 0;
 
+
+DROP TABLE IF EXISTS ar_ticket;
+DROP TABLE IF EXISTS ar_booking;
+DROP TABLE IF EXISTS ar_flight;
+DROP TABLE IF EXISTS ar_airport;
+DROP TABLE IF EXISTS ar_seat;
+DROP TABLE IF EXISTS ar_discount;
+DROP TABLE IF EXISTS ar_booking_status;
+DROP TABLE IF EXISTS ar_seat_class;
+DROP TABLE IF EXISTS ar_aircraft;
+DROP TABLE IF EXISTS ar_company;
 DROP TABLE IF EXISTS ar_user;
 DROP TABLE IF EXISTS ar_person;
-DROP TABLE IF EXISTS ar_company;
-DROP TABLE IF EXISTS ar_aircraft;
-DROP TABLE IF EXISTS ar_flight;
-DROP TABLE IF EXISTS ar_seat;
-DROP TABLE IF EXISTS ar_airport;
-DROP TABLE IF EXISTS ar_booking_status;
-DROP TABLE IF EXISTS ar_booking;
-DROP TABLE IF EXISTS ar_ticket;
-DROP TABLE IF EXISTS ar_discount;
 
 CREATE TABLE ar_person (
     person_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
@@ -22,9 +24,9 @@ CREATE TABLE ar_person (
     middle_name VARCHAR(30),
     last_name VARCHAR(30),
     gender VARCHAR(10),
-    perferred_language VARCHAR(30),
-    perferred_meal VARCHAR(30),
-    perferred_seat VARCHAR(30),
+    preferred_language VARCHAR(30),
+    preferred_meal VARCHAR(30),
+    preferred_seat VARCHAR(30),
     birthday DATE,
     address VARCHAR(90),
     city VARCHAR(30),
@@ -34,11 +36,11 @@ CREATE TABLE ar_person (
 )ENGINE=InnoDB;
 
 /* INSERT INTO ar_person (person_id, first_name, last_name, birthday, gender, address) */
-INSERT INTO ar_person (person_id, first_name, middle_name, last_name, gender, preferred_language, perferred_meal, perferred_seat, birthday, address, city, province, country, postal_code)
+INSERT INTO ar_person (person_id, first_name, middle_name, last_name, gender, preferred_language, preferred_meal, preferred_seat, birthday, address, city, province, country, postal_code)
 VALUES
-(1, "John", "James", "Smith", "Male", "English", "", "", "1980/01/15", "123 Main St", "Toronto", "ON", "Canada", "M4E 0B5"),
-(2, "Alice", "Rose", "Johnson", "Male", "French", "Muslim meal", "", "1983/04/22", "456 Elm St", "Vancouver", "BC", "Canada", "V6L 2L2"),
-(3, "Adobe", "", "Wong", "Female", "", "", "", "1979/02/05", "789 Oak St", "Montreal", "QC", "Canada", "H3K 3H3"),
+(1, "Adobe", "", "Wong", "Female", "", "", "", "1979/02/05", "789 Oak St", "Montreal", "QC", "Canada", "H3K 3H3"),
+(2, "John", "James", "Smith", "Male", "English", "", "", "1980/01/15", "123 Main St", "Toronto", "ON", "Canada", "M4E 0B5"),
+(3, "Alice", "Rose", "Johnson", "Male", "French", "Muslim meal", "", "1983/04/22", "456 Elm St", "Vancouver", "BC", "Canada", "V6L 2L2"),
 (4, "Robert", "Grace", "White", "Male", "English", "", "Window", "1986/10/18", "101 Pine St", "Ottawa", "ON", "Canada", "K1V 9J2"),
 (5, "Emily", "", "Davis", "Female", "English", "Hindu meal", "", "1981/09/30", "202 Cedar St", "Calgary", "AB", "Canada", "T2B 1M5"),
 (6, "Olivia", "Elizabeth", "Brown", "Male", "French", "", "", "1975/12/12", "303 Maple St", "Edmonton", "AB", "Canada", "T5K 0K5"),
@@ -79,9 +81,9 @@ CREATE TABLE ar_user (
 
 INSERT INTO ar_user (user_id, user_name, password, email, card_number, phone, head_img, person_id, admin)
 VALUES 
-(1, "skyrider123", "pass123", "john.smith@email.com", "873910885", "123-456-7892", "/avatar/img1.jpg", 1, FALSE),
-(2, "travelbuff88", "abc@123", "alice@email.com", "861760757", "987-654-4321", "/avatar/img2.jpg", 2, FALSE),
-(3, "admin", "admin123", "admin@email.com", "816969890", "111-222-3333", "/avatar/img3.jpg", 3, TRUE),
+(1, "admin", "admin123", "admin@email.com", "816969890", "111-222-3333", "/avatar/img1.jpg", 1, TRUE),
+(2, "skyrider123", "pass123", "john.smith@email.com", "873910885", "123-456-7892", "/avatar/img2.jpg", 2, FALSE),
+(3, "travelbuff88", "abc@123", "alice@email.com", "861760757", "987-654-4321", "/avatar/img3.jpg", 3, FALSE),
 (4, "globetrotter99", "testpass", "robert@email.com", "878445970", "444-555-6666", "/avatar/img4.jpg", 4, FALSE),
 (5, "wanderlust22", "secure1", "emily@email.com", "876821703", "777-888-9999", "/avatar/img5.jpg", 5, FALSE),
 (6, "nomadexplorer", "mypass", "olivia@email.com", "817161536", "112-223-3344", "/avatar/img6.jpg", 6, FALSE),
@@ -98,14 +100,14 @@ VALUES
 (17, "infinitedestiny", "welcome2", "harper@email.com", "869808480", "233-344-4552", "/avatar/img17.jpg", 17, FALSE),
 (18, "journeyenthusiast", "abcdefgh", "evelyn@email.com", "875581821", "344-455-5664", "/avatar/img18.jpg", 18, FALSE),
 (19, "travelepicurean", "abc98765432", "liam@email.com", "891675302", "455-566-6777", "/avatar/img19.jpg", 19, FALSE),
-(20, "expeditionist2023", "passpass", "amelia@email.com", "848922928", "566-677-7887", "/avatar/img20.jpg", 20, FALSE),
+(20, "expeditionist2023", "passpass", "amelia@email.com", "848922928", "566-677-7887", "/avatar/img20.jpg", 20, FALSE);
 
 
 
 CREATE TABLE ar_airport (
     airport_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     airport_code VARCHAR(10),
-    airport_name VARCHAR(30),
+    airport_name VARCHAR(80),
     airport_province VARCHAR(10),
     airport_city VARCHAR(20),
     latitude DECIMAL(10, 4),
@@ -160,7 +162,7 @@ VALUES
 
 CREATE TABLE ar_company (
     company_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    company_name VARCHAR(20),
+    company_name VARCHAR(20)
 )ENGINE=InnoDB;
 
 INSERT INTO ar_company (company_id, company_name)
@@ -202,13 +204,14 @@ VALUES
 (5, "Airbus A320", 3, 4, "2-2", 7, 6, "3-3", 16, 6, "3-3", 150);
 
 
+/* The Flight about the trip information */
 CREATE TABLE ar_flight (
     flight_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     company_id INT,
     aircraft_id INT,
     departure_airport_id INT,
     arrival_airport_id INT,
-    airline_miles DECIMAL(10, 2),
+    airline_miles INT,
     departure_date DATE,
     departure_time TIME,
     arrival_date DATE,
@@ -236,6 +239,10 @@ VALUES
 (2, "Premium Economy"),
 (3, "Business");
 
+CREATE TABLE ar_booking_status (
+    booking_status_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    booking_status VARCHAR(20)
+)ENGINE=InnoDB;
 
 INSERT INTO ar_booking_status (booking_status_id, booking_status)
 VALUES
@@ -244,7 +251,6 @@ VALUES
 (3, "Paid"),
 (4, "Issued"),
 (5, "Cancelled");
-
 
 CREATE TABLE ar_booking (
     booking_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
@@ -261,25 +267,6 @@ CREATE TABLE ar_booking (
 )ENGINE=InnoDB;
 
 
-INSERT INTO ar_booking (booking_id, booking_number, user_id, flight_id, booking_date, booking_time, booking_status_id, total_price)
-VALUES
-(),
-
-
-CREATE TABLE ar_ticket (
-	ticket_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    ticket_number VARCHAR(20),
-	booking_id INT,
-	person_id INT,
-	seat_id INT,
-    special_requst VARCHAR(20),
-	price DECIMAL(10, 2),
-	checkin BOOLEAN,
-	FOREIGN KEY (booking_id) REFERENCES ar_booking(booking_id),
-    FOREIGN KEY (person_id) REFERENCES ar_person(person_id),
-    FOREIGN KEY (seat_id) REFERENCES ar_seat(seat_id)
-)ENGINE=InnoDB;
-
 
 
 CREATE TABLE ar_discount (
@@ -292,7 +279,7 @@ CREATE TABLE ar_discount (
 	reason1 VARCHAR(20), 
 	rate1 DECIMAL(10, 2),
 	reason2 VARCHAR(20), 
-	rate2 DECIMAL(10, 2)
+	rate2 DECIMAL(10, 2),
     reason3 VARCHAR(20), 
 	rate3 DECIMAL(10, 2)
 )ENGINE=InnoDB;
@@ -308,7 +295,21 @@ CREATE TABLE ar_seat (
     seat_number VARCHAR(20),
     seat_class_id INT,
     FOREIGN KEY (aircraft_id) REFERENCES ar_aircraft(aircraft_id),
-    FOREIGN KEY (seat_class_id) REFERENCES ar_seat_class(seat_class_id),
+    FOREIGN KEY (seat_class_id) REFERENCES ar_seat_class(seat_class_id)
+)ENGINE=InnoDB;
+
+CREATE TABLE ar_ticket (
+	ticket_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    ticket_number VARCHAR(20),
+	booking_id INT,
+	person_id INT,
+	seat_id INT,
+    special_requst VARCHAR(20),
+	price DECIMAL(10, 2),
+	checkin BOOLEAN,
+	FOREIGN KEY (booking_id) REFERENCES ar_booking(booking_id),
+    FOREIGN KEY (person_id) REFERENCES ar_person(person_id),
+    FOREIGN KEY (seat_id) REFERENCES ar_seat(seat_id)
 )ENGINE=InnoDB;
 
 
@@ -1592,7 +1593,8 @@ VALUES
 (1276, 5, "16F", 1);
 
 
-INSERT INTO ar_flight (flight_id, company_id, aircraft_id, departure_airport_id, arrival_airport_id, departure_date, departure_time, arrival_date, arrival_time, price_business, price_premium, price_economy)
+
+INSERT INTO ar_flight (flight_id, company_id, aircraft_id, departure_airport_id, arrival_airport_id, airline_miles, departure_date, departure_time, arrival_date, arrival_time, price_business, price_premium, price_economy)
 VALUES
 (1, 6, 2, 1, 3, 641, "2023/03/12", "07:07:00", "2023/03/12", "07:55:00", 468, 272, 151),
 (2, 8, 4, 1, 3, 641, "2023/04/18", "15:04:00", "2023/04/18", "15:52:00", 468, 272, 151),
@@ -4428,3 +4430,59 @@ VALUES
 (2832, 1, 1, 43, 42, 2199, "2023/03/24", "20:11:00", "2023/03/24", "22:55:00", 1193, 692, 384),
 (2833, 1, 3, 43, 42, 2199, "2023/05/10", "08:00:00", "2023/05/10", "10:44:00", 1193, 692, 384),
 (2834, 2, 1, 43, 42, 2199, "2023/07/28", "15:10:00", "2023/07/28", "17:54:00", 1193, 692, 384);
+
+
+
+
+INSERT INTO ar_booking (booking_id, booking_number, user_id, flight_id, booking_date, booking_time, booking_status_id, total_price)
+VALUES
+(1, "I806397920", 14, 2000, "2023/07/22", "13:01:02", 2, 1793.00),
+(2, "C825225288", 19, 914, "2023/10/05", "08:43:14", 3, 803.00),
+(3, "Z806456182", 13, 1093, "2023/05/14", "19:11:17", 4, 2102.00),
+(4, "C839582656", 9, 1601, "2023/06/09", "21:48:40", 3, 2496.00),
+(5, "E821474358", 10, 1975, "2023/10/24", "14:06:02", 2, 580.00),
+(6, "M805393817", 7, 1183, "2023/12/25", "21:16:04", 4, 1493.00),
+(7, "D875279849", 17, 86, "2023/11/02", "16:25:15", 5, 6514.00),
+(8, "N872422904", 18, 1209, "2023/03/23", "15:48:19", 2, 1469.00),
+(9, "X870295576", 5, 2395, "2023/05/03", "23:46:06", 4, 2307.00),
+(10, "P882615583", 19, 2468, "2023/03/02", "16:22:00", 4, 1776.00);
+
+
+
+INSERT INTO ar_ticket (ticket_id, ticket_number, booking_id, person_id, seat_id, special_requst, price, checkin)
+VALUES
+(1, "EWO848686719788", 3, 14, 460, "Muslim meal", 660.00, FALSE),
+(2, "SJL858249713982", 7, 16, 99, "", 1022.00, TRUE),
+(3, "HAF850604985523", 2, 23, 168, "", 663.00, FALSE),
+(4, "GAQ810583784939", 2, 14, 634, "Hindu meal", 140.00, FALSE),
+(5, "PMY856145469467", 7, 11, 467, "", 433.00, FALSE),
+(6, "LIQ816278786749", 9, 13, 572, "Diabetic meal", 225.00, TRUE),
+(7, "BSW831133910904", 10, 8, 970, "", 823.00, FALSE),
+(8, "FWJ857557413683", 4, 25, 544, "", 769.00, FALSE),
+(9, "BNH817941377188", 6, 5, 1189, "Baby meal", 702.00, FALSE),
+(10, "SJS848653179120", 9, 3, 421, "Asian meal", 818.00, TRUE),
+(11, "KQI809188677954", 7, 5, 279, "", 1001.00, FALSE),
+(12, "QTX849756982901", 4, 19, 491, "", 604.00, FALSE),
+(13, "UES845422412349", 10, 5, 732, "Muslim meal", 503.00, TRUE),
+(14, "QHC887703320555", 7, 24, 810, "", 1078.00, TRUE),
+(15, "FHG875748454981", 7, 9, 776, "", 632.00, TRUE),
+(16, "AYZ846818653118", 9, 10, 361, "Child meal", 470.00, FALSE),
+(17, "KSP886261224820", 4, 18, 857, "Vegetarian meal", 400.00, TRUE),
+(18, "UIH816172669735", 1, 5, 344, "", 396.00, TRUE),
+(19, "EAD886467806131", 1, 10, 1070, "", 313.00, FALSE),
+(20, "CVU837283998686", 8, 7, 260, "", 986.00, TRUE),
+(21, "TVU805488177373", 3, 7, 586, "Low-calorie meal", 904.00, FALSE),
+(22, "CSC850633762892", 4, 24, 807, "", 527.00, TRUE),
+(23, "JZE859308623575", 1, 18, 776, "", 1084.00, FALSE),
+(24, "DZF856570409613", 6, 22, 765, "Vegetarian meal", 791.00, TRUE),
+(25, "SDT885682283328", 9, 14, 787, "", 794.00, FALSE),
+(26, "MVL870397572273", 3, 6, 780, "", 538.00, TRUE),
+(27, "BQS820686698935", 7, 18, 894, "", 84.00, FALSE),
+(28, "GEI824115555281", 5, 5, 124, "", 580.00, TRUE),
+(29, "TCI837156927172", 7, 4, 345, "", 590.00, FALSE),
+(30, "MTD836812145364", 4, 16, 161, "Vegetarian meal", 196.00, TRUE),
+(31, "ISU812612684247", 7, 14, 543, "", 994.00, FALSE),
+(32, "ELB892672969371", 8, 6, 354, "", 483.00, TRUE),
+(33, "OBW898263415404", 10, 6, 525, "Muslim meal", 450.00, FALSE),
+(34, "OWX854377969466", 7, 18, 880, "", 153.00, TRUE),
+(35, "YWJ820762219798", 7, 8, 926, "", 527.00, FALSE);
